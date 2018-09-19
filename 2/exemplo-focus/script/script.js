@@ -9,26 +9,37 @@ const inputArea = document.getElementById("cadastroInputArea")
 const inputLevel = document.getElementsByName("level")
 const inputNews = document.getElementById("cadastroInputNews")
 
+//Lê a variável correspondente ao fundo
+const fundo = document.querySelector("body")
+
 const cadastroButton = document.querySelector(".cadastro__button")
 
 cadastroButton.addEventListener("click",function(evento){
     evento.preventDefault();
 
-// RESOLVER!!!
-// 7 - dependando do nível escreve no console
-//     junior: 0 - 2 anos de experiência;
-//     pleno: 2 - 5 anos de experiência;
-//     senior 5+ anos de experiência;
-
-    // let levelSelect
-    // for (i=0,i<inputLevel.length,i++){
-    //     console.log(inputLevel[i].checked)
-    //     console.log(inputLevel[i].value)
-    //     if (inputLevel[i].checked === true){
-    //         radio = inputLevel[i].value
-    //     }
-    // }
-
+    // 7 - dependando do nível escreve no console
+    //     junior: 0 - 2 anos de experiência;
+    //     pleno: 2 - 5 anos de experiência;
+    //     senior 5+ anos de experiência;
+   
+    let levelSelect
+    for (i=0; i < inputLevel.length ; i++){ 
+        if (inputLevel[i].checked === true){
+            levelSelect = inputLevel[i].value
+        }
+    }
+    
+    switch(levelSelect){
+        case "Junior":
+            console.log("junior: 0 - 2 anos de experiência")
+            break;
+        case "Pleno":
+            console.log("pleno: 2 - 5 anos de experiência")
+            break;
+        case "Senior":
+            console.log("senior: 5+ anos de experiência")
+            break;
+    }
     
     // 8 - Se news não estiver checkado exibir um alerta escrito: É uma pena que você não deseja receber nosso conteúdo exclusivo :c
     //Mostra se está checado ou não
@@ -52,7 +63,10 @@ cadastroButton.addEventListener("click",function(evento){
             return false
         }
     }
-
+    fundo.style.backgroundColor = "#fff"; //Para o formulário voltar a ficar branco ao submeter
+    const form = this.closest("form") //Procura o formulário mais próximo do elemento imediatamente anterior
+    form.submit();
+    alert("Formulário enviado com sucesso! ;)")
 })
 
 // 3 - Verificar se os emails são os mesmos
@@ -86,43 +100,28 @@ inputPassword.addEventListener("change", function(){
 //     back verde
 //     ux rosa
 //     ui laranja
-inputArea.addEventListener("blur", function(){
-        //Lê a opção selecionada (mostra a opção selecionada se você colocar .value)
-    const optionSelect = inputArea.options[inputArea.selectedIndex]
-    
-    //Lê a variável correspondente ao fundo
-    const fundo = document.querySelector("body")
-   
-    //Muda a cor do fundo
-    switch (inputArea.selectedIndex){
-        case 0:
-            fundo.style.backgroundColor = "#ADD8E6";
-            break;
-        case 1:
-            fundo.style.backgroundColor = "#66CDAA";
-            break;
-        case 2:
-            fundo.style.backgroundColor = "#FFB6C1";
-            break;
-        case 3:
-            fundo.style.backgroundColor = "#FFDAB9";
-            break;
-    }
+inputArea.addEventListener("change", function(){
+//Lê a opção selecionada (mostra a opção selecionada se você colocar .value)
+const optionSelect = inputArea.options[inputArea.selectedIndex]
 
+//Muda a cor do fundo
+switch (inputArea.selectedIndex){
+    case 0:
+        fundo.style.backgroundColor = "#ADD8E6";
+        break;
+    case 1:
+        fundo.style.backgroundColor = "#66CDAA";
+        break;
+    case 2:
+        fundo.style.backgroundColor = "#FFB6C1";
+        break;
+    case 3:
+        fundo.style.backgroundColor = "#FFDAB9";
+        break;
+    }   
 })
 
-
-// RESOLVER!!!
-
-// switch(radio){
-//     case 
-// }
-
-// console.log(optionSelect.value)
-
-//     console.log("junior: 0 - 2 anos de experiência")
-//     console.log("pleno: 2 - 5 anos de experiência")
-//     console.log("senior: 5+ anos de experiência")
-
-
-
+// fundo.style.backgroundColor = "#fff"; //Para o formulário voltar a ficar branco ao submeter
+// this.closest(".cadastro").style.backgroundColor="black";
+// const form = this.closest("form") //Procura o formulário mais próximo
+// // form.sumit();
